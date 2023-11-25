@@ -40,10 +40,10 @@ const resolvers = {
 //use ...book for short wait 
         const user= await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { saveBooks: {...book} } }
+          { $addToSet: { savedBooks: {...book} } }
         );
 
-        return thought;
+        return user;
       }
       throw AuthenticationError;
       ('You need to be logged in!');
@@ -62,23 +62,7 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    removeComment: async (parent, { thoughtId, commentId }, context) => {
-      if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
-          {
-            $pull: {
-              comments: {
-                _id: commentId,
-                commentAuthor: context.user.username,
-              },
-            },
-          },
-          { new: true }
-        );
-      }
-      throw AuthenticationError;
-    },
+
   },
 };
 
