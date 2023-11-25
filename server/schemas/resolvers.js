@@ -49,7 +49,7 @@ const resolvers = {
       ('You need to be logged in!');
     },
 
-    removeBook: async (parent, { thoughtId }, context) => {
+    removeBook: async (parent, { bookId }, context) => {
       if (context.user) {
         
 
@@ -58,7 +58,7 @@ const resolvers = {
           { $pull: { savedBooks: {bookId} } }
         );
 
-        return user;
+        return bookId;
       }
       throw AuthenticationError;
     },
