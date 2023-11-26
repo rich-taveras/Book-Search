@@ -24,7 +24,7 @@ const SavedBooks = () => {
   // use this to determine if `useEffect()` hook needs to run again
 const {loading, data}  =useQuery (QUERY_ME)
 
-const savedBooks = data?.me.saveBooks|| []
+const savedBooks = data?.me.savedBooks|| []
 
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
